@@ -26,13 +26,15 @@ https://www.tooplate.com/view/2119-gymso-fitness
 -->
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+    {% include 'nav.html' %}
     {% block content %}
 
 
 
-
+    
 
     {% endblock %}
+    {% include 'footer.html' %}
      <!-- SCRIPTS -->
      <script src="{% static 'js/jquery.min.js'%}"></script>
      <script src=" {% static 'js/bootstrap.min.js'%}"></script>

@@ -13,10 +13,13 @@ from django.contrib import messages
 from Machine_L import ml
 # Create your views here.
 
-def index1(request):
+def home(request):
     return render(request , 'index1.html')
 
-def home(request):
+def food(request):
+    return render(request , 'food.html')
+
+def profile(request):
     if request.user.is_authenticated:
         ssu=request.user
         phone=request.user.phone_no
@@ -63,7 +66,7 @@ def register(request):
 
 def loginr(request):
     if request.user.is_authenticated:
-        return HttpResponse("okok")
+        return redirect('home')
     if request.method == 'POST':
         emailw = request.POST.get('email')
         passs = request.POST.get('password') 
