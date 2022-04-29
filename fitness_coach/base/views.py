@@ -5,7 +5,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import User, food
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from .forms import RForm
@@ -13,11 +13,33 @@ from django.contrib import messages
 from Machine_L import ml
 # Create your views here.
 
-def home(request):
-    return render(request , 'index1.html')
 
-def food(request):
-    return render(request , 'food.html')
+def home(request):
+    return render(request , 'index.html')
+
+
+
+def food1(request):
+    if request.user.is_authenticated:
+        ssu=request.user
+        phone=request.user.phone_no
+        if request.method == 'POST':
+            food_name = request.POST.get('food_name')
+            food_quant = request.POST.get('food_quant') 
+            calories = request.POST.get('calories') 
+            us= request.user
+            fd = food(food_user=us,food_name=food_name,food_quant=food_quant,calories=calories )
+            fd.save()
+    else:
+        return redirect('loginr')
+    return render(request , 'food.html',{'ssu':ssu, 'phone':phone})
+
+
+
+def result(request):
+    return render(request , 'results.html')
+
+
 
 def profile(request):
     if request.user.is_authenticated:
@@ -28,7 +50,8 @@ def profile(request):
         ssu="you aare not loged in pls log in"
         phone=9999999
 
-    return render(request, 'index.html',{'ssu':ssu,'phone':phone})
+    return render(request, 'profile.html',{'ssu':ssu,'phone':phone})
+
 
 
 def cam_but(request):
@@ -36,6 +59,8 @@ def cam_but(request):
         s=ml.camm()
         print(s)
     return render(request, 'cool.html',{'som':s})
+
+
 
 def cool(request):
     s=ml.hell(request)
@@ -96,3 +121,4 @@ def loginr(request):
 def logoutUser(request):
     logout(request)
     return redirect('home')
+

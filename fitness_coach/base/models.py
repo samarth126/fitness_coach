@@ -45,5 +45,5 @@ class profile(models.Model):
     bmi=models.CharField(null=True, max_length=11)
     body_type=models.CharField(null=True, max_length=11)
     def __str__(self):
-        return str(self.workout_name)
+        return str(self.height)
 

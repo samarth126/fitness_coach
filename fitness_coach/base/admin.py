@@ -3,3 +3,6 @@ from .models import *
 # Register your models here.
 
 admin.site.register(User)
+admin.site.register(food)
+admin.site.register(workout)
+admin.site.register(profile)
