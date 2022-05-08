@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+<script>
+    $(window).on("load resize ", function() {
+      var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+      $('.tbl-header').css({'padding-right':scrollWidth});
+    }).resize();
+  </script>
+  
+  <style>
+    table{
+      width:100%;
+      table-layout: fixed;
+    }
+    .tbl-header{
+      background-color: rgba(255,255,255,0.3);
+     }
+    .tbl-content{
+      height:300px;
+      overflow-x:auto;
+      margin-top: 0px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    th{
+      padding: 20px 15px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 12px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    td{
+      padding: 15px;
+      text-align: left;
+      vertical-align:middle;
+      font-weight: 300;
+      font-size: 12px;
+      color: #fff;
+      border-bottom: solid 1px rgba(255,255,255,0.1);
+    }
+    
+    
+    /* demo styles */
+    
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+    .well{
+      background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+      background: linear-gradient(to right, #25c481, #25b7c4);
+      font-family: 'Roboto', sans-serif;
+    }
+  
+    
+    
+    /* follow me template */
+    .made-with-love {
+      margin-top: 40px;
+      padding: 10px;
+      clear: left;
+      text-align: center;
+      font-size: 10px;
+      font-family: arial;
+      color: #fff;
+    }
+    .made-with-love i {
+      font-style: normal;
+      color: #F50057;
+      font-size: 14px;
+      position: relative;
+      top: 2px;
+    }
+    .made-with-love a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .made-with-love a:hover {
+      text-decoration: underline;
+    }
+    
+    
+    /* for custom scrollbar for webkit browser*/
+    
+    ::-webkit-scrollbar {
+        width: 6px;
+    } 
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    } 
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    }
+  </style>
+  
+
+
+
+  <!-- CLASS -->
+  <section class="class section" id="class">
+    <div class="container">
+         <div class="row">
+
+                 <div class="col-lg-12 col-12 text-center mb-5">
+                     <h6 data-aos="fade-up">Your Health Information </h6>
+
+                     <h2 data-aos="fade-up" data-aos-delay="200"> Your Daily Health Record</h2>
+                  </div>
+
+                  <div class="col-lg-5 py-5 col-md-5 col-5">
+                    <form method="post" action="{% url 'health' %}">
+                      {% csrf_token %}
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">SPO 2</label>
+                          <input type="text" class="form-control" name="spo2" placeholder="Spo2">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputPassword4">Heart Rate</label>
+                          <input type="text" class="form-control" name="heart_rate" placeholder="Heart Rate">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputAddress">Sleep</label>
+                        <input type="text" class="form-control" name="sleep" placeholder="Hours of sleep">
+                      </div>
+                    
+                      <button type="submit" class="btn btn-primary">Add to log</button>
+                    </form>
+                  </div>
+
+                  <div class="col-lg-7 py-5 col-md-7 col-7 well">
+     <section>
+        <!--for demo wrap-->
+        <h1>Daily Health Log</h1>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Spo2</th>
+                <th>Heart rate</th>
+                <th>sleep</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+             {% for h in healthy %}
+              <tr>
+                <td>{{h.time}}</td>
+                <td>{{h.spo2}} </td>
+                <td>{{ h.heart_rate }}</td>
+                <td>{{ h.sleep }}</td>
+              </tr>
+              {% endfor %}
+              <tr>
+                <td>AAD</td>
+                <td>AUSENCO</td>
+                <td>$2.38</td>
+                <td>-0.01</td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+    </div>
+    
+
+
+         </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+

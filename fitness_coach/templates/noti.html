@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+  <!-- CLASS -->
+  <section class="class section" id="class">
+    <div class="container">
+         <div class="row">
+
+                 <div class="col-lg-12 col-12 text-center mb-5">
+                     <h6 data-aos="fade-up">Your Notifications</h6>
+
+                     <h2 data-aos="fade-up" data-aos-delay="200"> Your messages form admin</h2>
+                  </div>
+
+                  <div class="col-lg-12 py-5 col-md-12 col-12">
+
+                    <div class="row">
+                        {% for i in notify %}
+                      <div class="col-md-3">
+                      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                        {{i.message}}
+                    <br>
+                    {{i.time}}
+                    <br>
+                    <br>
+                      </div>
+                        </div>
+                        {% endfor %}
+    
+    
+                    </div>
+                 
+
+              </div>
+    
+
+         </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+

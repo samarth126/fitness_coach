@@ -20,7 +20,7 @@ class User(AbstractUser):
 class food(models.Model):
     food_user=models.ForeignKey(User, on_delete=models.RESTRICT)
     food_name=models.CharField(null=True, max_length=11)
-    food_quant=models.IntegerField(max_length=5, default=100)
+    food_quant=models.CharField(null=True, max_length=11)
     calories=models.CharField(null=True, max_length=11)
     time=models.DateTimeField(auto_now_add=True)
 
@@ -31,12 +31,25 @@ class food(models.Model):
 class workout(models.Model):
     workout_user=models.ForeignKey(User, on_delete=models.RESTRICT)
     workout_name=models.CharField(null=True, max_length=11)
-    reps=models.IntegerField(max_length=5, default=100)
-    tot_cal=models.IntegerField(max_length=5, default=100)
+    goal=models.IntegerField(default=5,blank = True)
+    achived=models.IntegerField(default=5,blank = True)
+    msic_type=models.CharField(null=True, max_length=11, default='rock')
+    reps=models.IntegerField(default=5,blank = True)
+    tot_cal=models.IntegerField(default=10,blank = True)
     time=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.workout_name)
+
+class daily_info(models.Model):
+    daily_user=models.ForeignKey(User, on_delete=models.RESTRICT)
+    spo2=models.IntegerField(default=5,blank = True)
+    heart_rate=models.IntegerField(default=5,blank = True)
+    sleep=models.IntegerField(default=5,blank = True)
+    time=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.daily_user)
 
 class profile(models.Model):
     pro_user=models.OneToOneField(User, on_delete=models.RESTRICT)
@@ -45,5 +58,22 @@ class profile(models.Model):
     bmi=models.CharField(null=True, max_length=11)
     body_type=models.CharField(null=True, max_length=11)
     def __str__(self):
-        return str(self.height)
+        return str(self.pro_user)
+
+
+class Notifications(models.Model):
+    notification_user=models.ForeignKey(User, on_delete=models.RESTRICT)
+    time=models.DateTimeField(auto_now_add=True)
+    message=models.TextField(blank=True)
+
+    def __str__(self):
+        return str(self.notification_user)
+
+class contact(models.Model):
+    name=models.CharField(null=True, max_length=11)
+    email=models.CharField(null=True, max_length=11)
+    message=models.CharField(null=True, max_length=11)
+
+    def __str__(self):
+        return str(self.name)
 

@@ -3,24 +3,190 @@
 
 {% block content %}
 
-  <!-- CLASS -->
-  <section class="class section" id="class">
+
+
+   <!-- SCHEDULE food -->
+   <section class="schedule section" id="schedule">
     <div class="container">
          <div class="row">
 
-                 <div class="col-lg-12 col-12 text-center mb-5">
-                     <h6 data-aos="fade-up">Your results </h6>
+                 <div class="col-lg-12 col-12 text-center">
+                     <h6 data-aos="fade-up">our toatal food intake report</h6>
 
-                     <h2 data-aos="fade-up" data-aos-delay="200"> YOUR OVERALL Performance</h2>
+                     <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Food Performance Report</h2>
                   </div>
 
+                  <div class="col-lg-12 py-5 col-md-12 col-12">
+                      <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
 
-     results render
+                          <thead class="thead-light">
+                              <th><i class="fa fa-calendar"></i></th>
+                              <th>Food name</th>
+                              <th>Quantity</th>
+                              <th>Calories</th>
+                              
+                          </thead>
 
+                          <tbody>
+                            {% for food in food1 %}
+                              <tr>
+                                 <td><small>{{food.time}}</small></td>
+                                 
+                                 <td>
+                                     <strong>{{food.food_name}}</strong>
+                                     <span></span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{ food.food_quant }}</strong>
+                                  <span></span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{ food.calories }}</strong>
+                                  <span></span>
+                                 </td>
+
+                                
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
 
          </div>
     </div>
 </section>
+
+
+
+
+
+
+<!-- SCHEDULE health -->
+   <section class="schedule section" id="schedule">
+    <div class="container">
+         <div class="row">
+
+                 <div class="col-lg-12 col-12 text-center">
+                     <h6 data-aos="fade-up">our toatal health report</h6>
+
+                     <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Health Performance Report</h2>
+                  </div>
+
+                  <div class="col-lg-12 py-5 col-md-12 col-12">
+                      <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
+
+                          <thead class="thead-light">
+                              <th><i class="fa fa-calendar"></i></th>
+                              <th>Spo2</th>
+                              <th>Heart rate</th>
+                              <th>sleep</th>
+                              
+                          </thead>
+
+                          <tbody>
+                           
+                            {% for h in healthy %}
+                              <tr>
+                                 <td><small>{{h.time}}</small></td>
+                                 
+                                 <td>
+                                     <strong>{{h.spo2}}</strong>
+                                     <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{ h.heart_rate }}</strong>
+                                  <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{ h.sleep }}</strong>
+                                  <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+         </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- SCHEDULE workout -->
+   <section class="schedule section" id="schedule">
+    <div class="container">
+         <div class="row">
+
+                 <div class="col-lg-12 col-12 text-center">
+                     <h6 data-aos="fade-up">our toatal Workout report</h6>
+
+                     <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Workout Performance Report</h2>
+                  </div>
+
+                  <div class="col-lg-12 py-5 col-md-12 col-12">
+                      <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
+
+                          <thead class="thead-light">
+                              <th><i class="fa fa-calendar"></i></th>
+                              <th>workout Name</th>
+                              <th>goal</th>
+                              <th>Achived reps</th>
+                              <th>Music</th>
+                              <th>Calories Burnt</th>
+                              
+                          </thead>
+
+                          <tbody>
+                            {% for work in work1 %}
+                              <tr>
+                                 <td><small>{{work.time}}</small></td>
+                                 
+                                 <td>
+                                     <strong>{{work.workout_name}}</strong>
+                                     <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{work.goal}}</strong>
+                                  <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{ work.reps }}</strong>
+                                  <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{ work.msic_type }}</strong>
+                                  <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                 <td>
+                                  <strong>{{ work.tot_cal}}</strong>
+                                  <span>7:00 am - 9:00 am</span>
+                                 </td>
+
+                                
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+
+         </div>
+    </div>
+</section>
+
 
 
 
