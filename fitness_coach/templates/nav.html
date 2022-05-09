@@ -26,11 +26,11 @@
                 <li class="nav-item">
                     <a href="{% url 'cool' %}" class="nav-link smoothScroll">Workout</a>
                 </li>
-
+                {% if  request.user.is_authenticated %}
                 <li class="nav-item">
                     <a href="{% url 'profile' %}" class="nav-link smoothScroll">Profile</a>
                 </li>
-
+                {% endif %}
                 <li class="nav-item">
                     <a href="{% url 'result' %}" class="nav-link smoothScroll">Performance Report</a>
                 </li>

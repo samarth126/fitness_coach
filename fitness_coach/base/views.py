@@ -87,10 +87,38 @@ def contactt(request):
             cf_name = request.POST.get('cf_name')
             cf_email = request.POST.get('cf_email')
             cf_message = request.POST.get('cf_message')
-            conc=daily_info(name=cf_name, email=cf_email, message=cf_message)
+            conc=contact(name=cf_name, email=cf_email, message=cf_message)
             conc.save()
 
     return render(request, 'index.html',{})
+
+
+def pd_u(request):
+    if request.user.is_authenticated:
+        ssu=request.user
+        uss=User.objects.filter(email=ssu)
+        fname = request.POST.get('first_name')
+        lname = request.POST.get('last_name')
+        phone_no = request.POST.get('phone_no')
+        ecc=uss.update(first_name=fname,last_name=lname,phone_no=phone_no)
+        return redirect('profile')
+    else:
+        return redirect('loginr')
+    return render(request, 'profile.html',{})
+
+
+def h_w(request):
+    if request.user.is_authenticated:
+        ssu=request.user
+        uss=profile.objects.filter(pro_user=ssu)
+        height = request.POST.get('height')
+        weight = request.POST.get('weight')
+        ecc=uss.update(height=height,weight=weight)
+        return redirect('profile')
+    else:
+        return redirect('loginr')
+    return render(request, 'profile.html',{})
+
 
 
 
