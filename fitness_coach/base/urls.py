@@ -19,6 +19,8 @@ urlpatterns = [
     path('contact/', views.contactt, name='contactt'),
 
     path('food/', views.food1, name='food'),
+    path('pd_u/', views.pd_u, name='pd_u'),
+    path('h_w/', views.h_w, name='h_w'),
 
     path('result/', views.result, name='result'),
 
