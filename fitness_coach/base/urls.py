@@ -23,5 +23,6 @@ urlpatterns = [
     path('h_w/', views.h_w, name='h_w'),
 
     path('result/', views.result, name='result'),
+    path('web/', views.web, name='web'),
 
 ]
