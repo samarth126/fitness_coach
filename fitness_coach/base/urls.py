@@ -21,5 +21,6 @@ urlpatterns = [
     path('food/', views.food1, name='food'),
 
     path('result/', views.result, name='result'),
+    path('web/', views.web, name='web'),
 
 ]

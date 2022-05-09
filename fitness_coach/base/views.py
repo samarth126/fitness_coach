@@ -1,4 +1,6 @@
 from cProfile import Profile
+from http.client import responses
+from urllib import response
 from django.http import HttpResponseRedirect
 from django.http.request import HttpRequest
 from django.http.response import JsonResponse
@@ -12,6 +14,9 @@ from django.shortcuts import redirect
 from .forms import RForm
 from django.contrib import messages
 from Machine_L import ml
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
 # Create your views here.
 
 
@@ -187,4 +192,19 @@ def loginr(request):
 def logoutUser(request):
     logout(request)
     return redirect('home')
+
+
+
+
+def web(request):
+    web_url='https://www.active.com/fitness/articles/5-simple-tips-for-fitness-success'
+    ol='article_content'
+    response=requests.get(web_url)
+    
+    soup=BeautifulSoup(response.text, 'html.parser')
+    
+    data=soup.find('article', attrs={'id':ol})
+    
+    
+    return HttpResponse(data)
 
