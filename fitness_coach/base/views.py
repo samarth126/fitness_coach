@@ -21,7 +21,43 @@ import pandas as pd
 
 
 def home(request):
-    return render(request , 'index.html')
+    web_url='https://www.active.com/fitness/articles/5-simple-tips-for-fitness-success'
+    ol='article_content'
+    value=[]
+    val=[]
+    response=requests.get(web_url)
+    
+    soup=BeautifulSoup(response.text, 'html.parser')
+    
+    
+    data=soup.find('article', attrs={'id':ol})
+    
+    for da in data.find_all('h2'):
+        
+        da=da.get_text()
+        print(da)
+
+        value.append(da)
+    for c in data.find_all('p'):
+        
+            
+        c=c.get_text()
+        val.append(c)
+    
+    
+    
+    
+    # temp=[]
+    # for r in rows:
+    #     temp.append(r)
+    #     for c in con:
+    #         temp.append(c)
+    # print(temp)
+    context={'value':value, 'val':val}
+    print(value)
+    
+    
+    return render(request , 'index.html', context)
 
 
 
@@ -92,18 +128,53 @@ def contactt(request):
 
     return render(request, 'index.html',{})
 
+def tips(request):
+    web_url='https://www.active.com/fitness/articles/5-simple-tips-for-fitness-success'
+    ol='article_content'
+    value=[]
+    val=[]
+    response=requests.get(web_url)
+    
+    soup=BeautifulSoup(response.text, 'html.parser')
+    
+    
+    data=soup.find('article', attrs={'id':ol})
+    
+    for da in data.find_all('h2'):
+        
+        da=da.get_text()
+        print(da)
+
+        value.append(da)
+    for c in data.find_all('p'):
+        
+            
+        c=c.get_text()
+        val.append(c)
+    
+    
+    
+    
+    # temp=[]
+    # for r in rows:
+    #     temp.append(r)
+    #     for c in con:
+    #         temp.append(c)
+    # print(temp)
+    context={'value':value, 'val':val}
+    return render(request, 'tips.html', context)
+
 def bmi_calc(request):
     if request.method == 'POST':
         height = request.POST.get('height')
         weight = request.POST.get('weight')
-        age= request.POST.get('age')
-        hh=float(height)
-        ww=int(weight)
-        h=(hh/100) ** 2
-        j=int(h)
-        Bm=ww/j
-        print(Bm)
-    return render(request,'index.html',{'bm':Bm})
+        h=float(height)
+        w=int(weight)
+        hhh=h/100
+        hh=hhh ** 2
+        bm=int(w/hh)
+        small=25
+    return render(request, 'index.html',{'bmi':bm,'small':small})
 
 def pd_u(request):
     if request.user.is_authenticated:
@@ -244,7 +315,9 @@ def web(request):
     soup=BeautifulSoup(response.text, 'html.parser')
     
     data=soup.find('article', attrs={'id':ol})
+    rows = data.find_all('h2')
+    con=data.find_all('p')
     
     
-    return HttpResponse(data)
+    return HttpResponse(con)
 
