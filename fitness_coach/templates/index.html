@@ -79,21 +79,21 @@
 
 
                   <div class="col-lg-5 py-5 col-md-5 col-5">
-                    <form method="post" action="{% url 'food' %}">
+                    <form method="post" action="{% url 'bmi_calc' %}">
                         {% csrf_token %}
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="inputEmail4">Height</label>
-                            <input type="text" class="form-control" name="height" placeholder="Food you counsumed">
+                            <input type="text" class="form-control" name="height" placeholder="Height in centimeters">
                           </div>
                           <div class="form-group col-md-6">
                             <label for="inputPassword4">Weight</label>
-                            <input type="text" class="form-control" name="weight" placeholder="quantity of the food">
+                            <input type="text" class="form-control" name="weight" placeholder="Weight in kg">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputAddress">Age</label>
-                          <input type="text" class="form-control" name="age" placeholder="Amount of calories">
+                          <input type="text" class="form-control" name="age" placeholder="Age">
                         </div>
                       
                         <button type="submit" class="btn btn-primary">Calculate BMI</button>
@@ -105,7 +105,7 @@
                         <div class="card-header">Result of BMI</div>
                         <div class="card-body">
                           <h5 class="card-title"  >Wish you a Happy Health</h5>
-                          <h3 style="color:black">25.5</h3>
+                          <h3 style="color:black"> {{ bm|floatformat:3 }} </h3>
                           <p class="card-text">you are Overweight</p>
                         </div>
                       </div>

@@ -92,6 +92,18 @@ def contactt(request):
 
     return render(request, 'index.html',{})
 
+def bmi_calc(request):
+    if request.method == 'POST':
+        height = request.POST.get('height')
+        weight = request.POST.get('weight')
+        age= request.POST.get('age')
+        hh=float(height)
+        ww=int(weight)
+        h=(hh/100) ** 2
+        j=int(h)
+        Bm=ww/j
+        print(Bm)
+    return render(request,'index.html',{'bm':Bm})
 
 def pd_u(request):
     if request.user.is_authenticated:
